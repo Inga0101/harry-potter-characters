@@ -1,10 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Texturina:wght@200;400;700&display=swap');
 
-* {
-    box-sizing: border-box;
-}
-
 body {
     margin: 0;
     padding: 0;
@@ -13,6 +9,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor:url('wand.cur/magic-wand.png'), default;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 h1 {
@@ -80,13 +81,13 @@ input{
     font-size: 1rem;
 }
 
+#searchBar .option-wand {
+      cursor: url("wand.cur/magic-wand.png"), auto;
+    }
+
 ::-webkit-scrollbar{
     display: none;
 }
-
-/* #searchBar .option-wand{
-      cursor: img("magic-wand.png"), auto;
-    } */
 
     @media screen and (max-width: 480px) {
         h1 {
@@ -136,13 +137,6 @@ input{
     @media screen and (max-width: 768px) {
         h1{
             font-size: 1.2rem;
-        }
-        .character{
-            display: grid;
-            grid-template-columns: 3fr 1fr;
-            grid-template-areas:
-            'name image'
-            'house image';
         }
         .character > h2 {
             font-size: 1rem;
