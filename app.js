@@ -2,33 +2,31 @@ const charactersList = document.getElementById('charactersList');
 const searchBar = document.getElementById('searchBar');
 let hpCharacters = [];
 
-//search-bar
+//search-bar function
 searchBar.addEventListener('keyup', (e) => {
-    const searchString = e.target.value.toLowerCase();
+    const letters = e.target.value.toLowerCase();
 
-    //searches by filtering with included letters //toLowerCase makes it case-insensitive
+    //searches by checking which characters contain the typed in letters //toLowerCase makes it case-insensitive
     const filteredCharacters = hpCharacters.filter((character) => { 
         return (
-            character.name.toLowerCase().includes(searchString) ||
-            character.house.toLowerCase().includes(searchString)||
-            character.ancestry.toLowerCase().includes(searchString)
+            character.name.toLowerCase().includes(letters) || character.house.toLowerCase().includes(letters) || character.ancestry.toLowerCase().includes(letters)
         );
     });
-    displayCharacters(filteredCharacters); //displays the filtered characters when u start typing letters in the search bar
+    displayCharacters(filteredCharacters); 
 });
 
 //fetch api
-const loadCharacters = async () => {
+const fetchCharacters = async () => {
    
-        const res = await fetch('https://hp-api.herokuapp.com/api/characters');
+        const res = await fetch('http://hp-api.herokuapp.com/api/characters');
         hpCharacters = await res.json();
         displayCharacters(hpCharacters);
 };
 
-//displays the name and pic etc of characters
+//function to display the name and pic etc of characters
 const displayCharacters = (characters) => {
     const htmlString = characters
-        .map((character) => {
+        .map((character) => { //converts the objects/info in the api to html
             return `
             <li class="character">
                 <h2>${character.name}</h2>
@@ -37,11 +35,10 @@ const displayCharacters = (characters) => {
             </li>
         `;
         })
-        .join('');
+        .join(' ');
     charactersList.innerHTML = htmlString;
-    console.log(characters);
 };
 
-loadCharacters();
+fetchCharacters(); 
 
 

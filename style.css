@@ -31,6 +31,7 @@ h1 {
     text-align: center;
 }
 
+/* ul */
 #charactersList {
     padding-inline-start: 0;
     display: grid;
@@ -38,6 +39,7 @@ h1 {
     grid-gap: 20px;
 }
 
+/* li */
 .character {
     list-style-type: none;
     background-color: #eaeaea;
@@ -72,6 +74,7 @@ h1 {
     align-self: center;
 }
 
+/* search-bar */
 input{
     width: 100%;
     padding: 0.8rem 1.8rem;
@@ -81,13 +84,15 @@ input{
     font-size: 1rem;
 }
 
-#searchBar .option-wand {
+/* #searchBar .option-wand {
       cursor: url("wand.cur/magic-wand.png"), auto;
-    }
+    } */
 
 ::-webkit-scrollbar{
     display: none;
 }
+
+/* media query */
 
     @media screen and (max-width: 480px) {
         h1 {
