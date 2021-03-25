@@ -2,6 +2,32 @@ const charactersList = document.getElementById('charactersList');
 const searchBar = document.getElementById('searchBar');
 let hpCharacters = [];
 
+//fetch api
+const fetchCharacters = async () => {
+   
+    const res = await fetch('https://hp-api.herokuapp.com/api/characters');
+    hpCharacters = await res.json();
+    displayCharacters(hpCharacters);
+};
+
+//function to display the name and pic etc of characters
+const displayCharacters = (characters) => {
+const htmlString = characters
+    .map((character) => { //converts the objects/info in the api to html
+        return `
+        <li class="character">
+            <h2>${character.name}</h2>
+            <p>House: ${character.house}, Ancestry: ${character.ancestry}</p>
+            <img src="${character.image}"></img>
+        </li>
+    `;
+    })
+    .join(' ');
+charactersList.innerHTML = htmlString;
+};
+
+fetchCharacters(); 
+
 //search-bar function
 searchBar.addEventListener('keyup', (e) => {
     const letters = e.target.value.toLowerCase();
@@ -15,30 +41,6 @@ searchBar.addEventListener('keyup', (e) => {
     displayCharacters(filteredCharacters); 
 });
 
-//fetch api
-const fetchCharacters = async () => {
-   
-        const res = await fetch('https://hp-api.herokuapp.com/api/characters');
-        hpCharacters = await res.json();
-        displayCharacters(hpCharacters);
-};
 
-//function to display the name and pic etc of characters
-const displayCharacters = (characters) => {
-    const htmlString = characters
-        .map((character) => { //converts the objects/info in the api to html
-            return `
-            <li class="character">
-                <h2>${character.name}</h2>
-                <p>House: ${character.house}, Ancestry: ${character.ancestry}</p>
-                <img src="${character.image}"></img>
-            </li>
-        `;
-        })
-        .join(' ');
-    charactersList.innerHTML = htmlString;
-};
-
-fetchCharacters(); 
 
 
